@@ -90,7 +90,7 @@ const token = localStorage.getItem('token');
               </div>
             )}
 
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
               <label className="flex items-center space-x-2">
                 <input
                   type="checkbox"
@@ -104,7 +104,7 @@ const token = localStorage.getItem('token');
               >
                 Forgot Password?
               </button>
-            </div>
+            </div> */}
 
             <Button
               type="submit"
@@ -116,12 +116,6 @@ const token = localStorage.getItem('token');
               Sign In
             </Button>
           </form>
-
-          <div className="mt-6 text-center">
-            <p className="text-sm text-slate-600">
-              Demo credentials: any email/password combination
-            </p>
-          </div>
         </CardContent>
       </Card>
     </div>

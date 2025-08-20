@@ -8,7 +8,7 @@ interface ProtectedRouteProps {
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   // const { user, isLoading } = useAuth();
-  const isLoading = false; // Simulating loading state
+  const isLoading = false; 
   const user  = localStorage.getItem('user');
 
   if (isLoading) {

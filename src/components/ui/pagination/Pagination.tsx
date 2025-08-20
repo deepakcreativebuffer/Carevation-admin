@@ -15,37 +15,33 @@ export const Pagination: React.FC<PaginationProps> = ({
   onPageChange,
   onPageSizeChange,
 }) => {
-  const totalPages = Math.ceil(totalItems / pageSize);
+  const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 1;
 
 const generatePages = () => {
   const pages: (number | string)[] = [];
-  const totalPages = Math.ceil(totalItems / pageSize);
+  const totalPages = pageSize > 0 ? Math.ceil(totalItems / pageSize) : 1;
 
   if (totalPages <= 5) {
-    // Show all pages if 5 or fewer
     for (let i = 1; i <= totalPages; i++) pages.push(i);
   } else {
-    pages.push(1); // always first page
+    pages.push(1); 
 
     let left = currentPage - 1;
     let right = currentPage + 1;
 
     if (currentPage <= 3) {
-      // show first few pages
       for (let i = 2; i <= 4; i++) pages.push(i);
       pages.push("...");
     } else if (currentPage >= totalPages - 2) {
-      // show last few pages
       pages.push("...");
       for (let i = totalPages - 3; i < totalPages; i++) pages.push(i);
     } else {
-      // show middle pages
       pages.push("...");
       for (let i = left; i <= right; i++) pages.push(i);
       pages.push("...");
     }
 
-    pages.push(totalPages); // always last page
+    pages.push(totalPages); 
   }
 
   return pages;
@@ -53,7 +49,6 @@ const generatePages = () => {
 
   return (
     <div className="flex items-center justify-center mt-4 space-x-4">
-      {/* Prev button */}
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
@@ -62,7 +57,6 @@ const generatePages = () => {
         &lt;
       </button>
 
-      {/* Page numbers with ... */}
       <div className="flex items-center space-x-2">
         {generatePages().map((page, idx) =>
           typeof page === "number" ? (
@@ -85,7 +79,6 @@ const generatePages = () => {
         )}
       </div>
 
-      {/* Next button */}
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
@@ -94,7 +87,6 @@ const generatePages = () => {
         &gt;
       </button>
 
-      {/* Page size selector */}
       <select
         value={pageSize}
         onChange={(e) => onPageSizeChange(Number(e.target.value))}

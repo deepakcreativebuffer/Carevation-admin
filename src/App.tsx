@@ -6,8 +6,8 @@ import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <Router>
+        <AuthProvider>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route 
@@ -20,8 +20,8 @@ function App() {
           />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
         </Routes>
-      </Router>
     </AuthProvider>
+    </Router>
   );
 }
 

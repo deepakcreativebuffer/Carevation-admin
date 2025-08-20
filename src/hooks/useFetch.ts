@@ -1,4 +1,3 @@
-// useGetApi.ts
 import { useState, useCallback, useEffect } from "react";
 import apiClient from "../utils/interceptors";
 
@@ -7,7 +6,7 @@ interface GetApiOptions {
   pathParams?: Record<string, string | number>;
   queryParams?: Record<string, string | number | boolean>;
   headers?: Record<string, string>;
-  autoFetch?: boolean; // 👈 new option for automatic fetch
+  autoFetch?: boolean;
 }
 
 export function useGetApi<T = any>(defaultOptions: GetApiOptions) {
@@ -18,7 +17,6 @@ export function useGetApi<T = any>(defaultOptions: GetApiOptions) {
   const buildUrl = (opts: GetApiOptions) => {
     let finalUrl = opts.url;
 
-    // Replace :params in URL
     if (opts.pathParams) {
       Object.entries(opts.pathParams).forEach(([key, value]) => {
         finalUrl = finalUrl.replace(`:${key}`, String(value));

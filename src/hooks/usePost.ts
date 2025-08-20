@@ -52,6 +52,7 @@ export function usePostApi<T = any>(defaultOptions: PostApiOptions) {
         const response = await apiClient.post(finalUrl, body, { headers });
 
         setData(response.data);
+        return response.data;
       } catch (err: any) {
         setError(err.response?.data?.message || err.message || "Something went wrong");
       } finally {

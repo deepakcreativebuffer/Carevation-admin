@@ -60,7 +60,7 @@ export const DashboardPage: React.FC = () => {
 
   // console.log("data", data);
   // console.log("engagementMetricsData", engagementMetricsData);
-  console.log("getCarespaceMetric", carespaceMetricsData);
+  // console.log("getCarespaceMetric", carespaceMetricsData);
   // console.log("tasktoolData", tasktoolData);
   // console.log("visitToolData", visitToolData);
   // console.log("medicationToolData", medicationToolData);

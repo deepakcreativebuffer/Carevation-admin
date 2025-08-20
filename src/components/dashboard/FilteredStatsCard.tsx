@@ -1,5 +1,4 @@
 import React from 'react';
-import { DivideIcon as LucideIcon } from 'lucide-react';
 import { Card, CardContent } from '../ui/Card';
 
 interface FilteredStatsCardProps {

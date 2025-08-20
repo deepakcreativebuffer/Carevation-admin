@@ -18,7 +18,6 @@ export const DateRangeFilter: React.FC<DateRangeFilterProps> = ({
   const [localStartDate, setLocalStartDate] = useState<string | null>(startDate);
   const [localEndDate, setLocalEndDate] = useState<string | null>(endDate);
 
-  // sync props -> local state (when parent resets)
   useEffect(() => {
     setLocalStartDate(startDate);
     setLocalEndDate(endDate);
@@ -87,7 +86,6 @@ export const DateRangeFilter: React.FC<DateRangeFilterProps> = ({
         {isExpanded && (
           <div className="mt-4 pt-4 border-t border-slate-200">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Start Date */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-slate-700">
                   Start Date
@@ -103,7 +101,6 @@ export const DateRangeFilter: React.FC<DateRangeFilterProps> = ({
                 </div>
               </div>
 
-              {/* End Date */}
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-slate-700">
                   End Date

@@ -17,19 +17,6 @@ interface OrdersTableProps {
 }
 
 export const WeeklyActiveUser: React.FC<OrdersTableProps> = ({ orders, isFiltered }) => {
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-100 text-green-800';
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'cancelled':
-        return 'bg-red-100 text-red-800';
-      default:
-        return 'bg-slate-100 text-slate-800';
-    }
-  };
-
   return (
     <Card>
       <CardHeader>
@@ -58,8 +45,6 @@ export const WeeklyActiveUser: React.FC<OrdersTableProps> = ({ orders, isFiltere
                   <th className="text-left py-3 px-4 font-medium text-slate-700">Week start
 </th>
                   <th className="text-left py-3 px-4 font-medium text-slate-700">Weekly Active User</th>
-                  {/* <th className="text-left py-3 px-4 font-medium text-slate-700">Amount</th> */}
-                  {/* <th className="text-left py-3 px-4 font-medium text-slate-700">Status</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -75,14 +60,6 @@ export const WeeklyActiveUser: React.FC<OrdersTableProps> = ({ orders, isFiltere
                     <td className="py-3 px-4 text-sm text-slate-900">
                       {order.wau}
                     </td>
-                    {/* <td className="py-3 px-4 text-sm font-medium text-slate-900">
-                      ${order.amount.toFixed(2)}
-                    </td>
-                    <td className="py-3 px-4">
-                      <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(order.status)}`}>
-                        {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
-                      </span>
-                    </td> */}
                   </tr>
                 ))}
               </tbody>

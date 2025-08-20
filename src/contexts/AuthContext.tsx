@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { usePostApi } from '../hooks/usePost';
 import { useGetApi } from '../hooks/useFetch';
+import { useNavigate } from 'react-router-dom';
 
 interface User {
   id: string;
@@ -28,6 +29,7 @@ export const useAuth = () => {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
  const { data: loginData, loading: loginLoading, submit } = usePostApi({url:"superadmin/dashboard/web/login"});
    const { data, loading, error, get } = useGetApi({
      url: "superadmin/dashboard/web/logout",
@@ -44,10 +46,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
     try {
      
-      await submit({ data: { email: email, password: password } });
-      console.log("loginData", loginData);
-      
-      const { token, user } = loginData.data.data;
+      const res = await submit({ data: { email: email, password: password } });
+      console.log("loginData", res);
+
+      const { token, user } = res?.data.data;
 
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
@@ -62,11 +64,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const logout = () => {
-    get()
+  const logout = async() => {
+   try {
+     await get();
+  } catch (err) {
+    console.error("Logout API call failed:", err);
+  } finally {
     setUser(null);
     localStorage.removeItem('user');
     localStorage.removeItem('token');
+    navigate('/login')
+  }
   };
 
   const value = {
