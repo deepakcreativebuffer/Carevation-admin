@@ -1,4 +1,4 @@
-import { DollarSign, ShoppingBag, Users } from 'lucide-react';
+import { DollarSign, Hourglass, PanelTop, ShoppingBag, Users } from 'lucide-react';
 import { useEffect } from 'react';
 import { FilteredStatsCard } from '../FilteredStatsCard';
 import { DailyUser } from '../DailyUser';
@@ -27,7 +27,7 @@ const EngagementMetricsData = () => {
             // filteredValue: filteredStats ? `$${filteredStats.revenue.toLocaleString()}` : undefined,
             change: 'minutes',
             changeType: 'positive' as const,
-            icon: DollarSign
+            icon: Hourglass
         },
         {
             title: 'Rolling Weekly Active Users',
@@ -35,7 +35,7 @@ const EngagementMetricsData = () => {
             // filteredValue: filteredStats ? filteredStats.orders.toLocaleString() : undefined,
             change: 'Last 7 days',
             changeType: 'negative' as const,
-            icon: ShoppingBag
+            icon: PanelTop
         },
 
     ]

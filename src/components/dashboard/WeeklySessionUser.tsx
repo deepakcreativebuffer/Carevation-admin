@@ -63,10 +63,10 @@ export const WeeklySessionUser: React.FC<TableProps> = ({ weeklySessionFrequency
                       {weeklySession.total_sessions}
                     </td>
                     <td className="py-3 px-4 text-sm font-medium text-slate-900">
-                      ${weeklySession.unique_users}
+                      {weeklySession.unique_users}
                     </td>
                     <td className="py-3 px-4 text-sm font-medium text-slate-900">
-                      ${weeklySession.avg_frequency}
+                      {weeklySession.avg_frequency.toFixed(2)}
                     </td>
                    
                   </tr>

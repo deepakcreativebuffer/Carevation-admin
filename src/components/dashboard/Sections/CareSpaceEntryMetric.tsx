@@ -1,4 +1,4 @@
-import { TrendingUp } from 'lucide-react';
+import { BookmarkCheck, Scroll, ScrollText, ShieldPlus, SquareKanban, TrendingUp } from 'lucide-react';
 import { useEffect } from 'react'
 import { FilteredStatsCard } from '../FilteredStatsCard';
 import { CareGiverPerCareSpace } from '../CareGiverPerCareSpace';
@@ -23,7 +23,7 @@ const CareSpaceEntryMetric = () => {
             title: 'Total Medical Files Uploaded',
             value: carespaceMetricsData?.data?.data?.total_medical_files_uploaded,
             // filteredValue: filteredStats ? `${filteredStats.growthRate.toFixed(1)}%` : undefined,
-            change: '+2.1% from last month',
+            // change: '+2.1% from last month',
             changeType: 'positive' as const,
             icon: TrendingUp
         }
@@ -33,41 +33,41 @@ const CareSpaceEntryMetric = () => {
             title: 'Medications',
             value: carespaceMetricsData?.data?.data?.weekly_entity_counts?.medications,
             // filteredValue: filteredStats ? `${filteredStats.growthRate.toFixed(1)}%` : undefined,
-            change: '+2.1% from last month',
+            // change: '+2.1% from last month',
             changeType: 'positive' as const,
-            icon: TrendingUp
+            icon: ShieldPlus
         },
         {
             title: 'Tasks',
             value: carespaceMetricsData?.data?.data?.weekly_entity_counts?.tasks,
             // filteredValue: filteredStats ? `${filteredStats.growthRate.toFixed(1)}%` : undefined,
-            change: '+2.1% from last month',
+            // change: '+2.1% from last month',
             changeType: 'positive' as const,
-            icon: TrendingUp
+            icon: BookmarkCheck
         },
         {
             title: 'Visits',
             value: carespaceMetricsData?.data?.data?.weekly_entity_counts?.visits,
             // filteredValue: filteredStats ? `${filteredStats.growthRate.toFixed(1)}%` : undefined,
-            change: '+2.1% from last month',
+            // change: '+2.1% from last month',
             changeType: 'positive' as const,
-            icon: TrendingUp
+            icon: SquareKanban
         },
         {
             title: 'Week End',
             value: new Date(carespaceMetricsData?.data?.data?.weekly_entity_counts?.weekEnd).toLocaleDateString(),
             // filteredValue: filteredStats ? `${filteredStats.growthRate.toFixed(1)}%` : undefined,
-            change: '+2.1% from last month',
+            // change: '+2.1% from last month',
             changeType: 'positive' as const,
-            icon: TrendingUp
+            icon: ScrollText
         },
         {
             title: 'Week Start',
             value: new Date(carespaceMetricsData?.data?.data?.weekly_entity_counts?.weekStart).toLocaleDateString(),
             // filteredValue: filteredStats ? `${filteredStats.growthRate.toFixed(1)}%` : undefined,
-            change: '+2.1% from last month',
+            // change: '+2.1% from last month',
             changeType: 'positive' as const,
-            icon: TrendingUp
+            icon: Scroll
         }
     ]
 

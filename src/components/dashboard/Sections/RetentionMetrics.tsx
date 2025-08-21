@@ -5,9 +5,9 @@ import { Card, CardContent, CardHeader } from "../../ui/Card";
 import { useEffect } from "react";
 
 interface OnboardingDropOffPoint {
-  step: string;
-  percentage: number;
-  count: number;
+    step: string;
+    percentage: number;
+    count: number;
 }
 const RetentionMetrics = () => {
     const { data, loading, error, get } = useGetApi({
@@ -37,6 +37,18 @@ const RetentionMetrics = () => {
         },
     ];
 
+    const stepMessages: Record<string, string> = {
+        USER_ACCOUNT_CREATED: "User successfully created an account",
+        SCREEN_OPENED_Welcome: "User landed on the Welcome screen",
+        "SCREEN_OPENED_CreateFirstCareSpace_Step 1/3": "User started CareSpace setup (Step 1 of 3)",
+        "SCREEN_OPENED_CreateFirstCareSpace_Step 2/3": "User continued CareSpace setup (Step 2 of 3)",
+        "SCREEN_OPENED_CreateFirstCareSpace_Step 3/3": "User reached the final step of CareSpace setup (Step 3 of 3)",
+        SCREEN_OPENED_ConditionPicker: "User opened the Condition Picker screen (to choose medical condition)",
+        SCREEN_OPENED_CreateFirstCareSpace: "User viewed the CareSpace creation overview screen",
+        ONBOARDING_COMPLETED: "User successfully completed onboarding",
+    };
+
+
     return (
         <div>
             <div className="mb-8">
@@ -64,7 +76,9 @@ const RetentionMetrics = () => {
                                         <Users className="w-4 h-4 text-teal-600" />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-medium text-slate-900">{item.step}</p>
+                                        <p className="text-sm font-medium text-slate-900">
+                                            {stepMessages[item.step] ?? item.step}
+                                        </p>
                                         <p className="text-xs text-slate-500">{item.percentage} %</p>
                                         <p className="text-xs text-slate-500">{item.count}</p>
                                     </div>

@@ -6,7 +6,7 @@ interface FilteredStatsCardProps {
   title: string;
   value: string;
   filteredValue?: string;
-  change: string;
+  change?: string;
   changeType: 'positive' | 'negative' | 'neutral';
   icon: LucideIcon;
   isFiltered: boolean;

@@ -63,10 +63,10 @@ export const DailySession: React.FC<TableProps> = ({ dailySessionFrequency, isFi
                       {dailySession.total_sessions}
                     </td>
                     <td className="py-3 px-4 text-sm font-medium text-slate-900">
-                      ${dailySession.unique_users}
+                      {dailySession.unique_users}
                     </td>
                     <td className="py-3 px-4 text-sm font-medium text-slate-900">
-                      ${dailySession.avg_frequency}
+                      {dailySession.avg_frequency.toFixed(2)}
                     </td>
                   </tr>
                 ))}
