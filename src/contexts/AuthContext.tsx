@@ -2,10 +2,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { usePostApi } from '../hooks/usePost';
 import { useGetApi } from '../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
-
+import Cookies from "js-cookie";
 interface User {
   id: string;
-  name: string;
+  first_name: string;
   email: string;
 }
 
@@ -37,7 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
-      // setUser(JSON.parse(savedUser));
+      setUser(JSON.parse(savedUser));
     }
     setIsLoading(false);
   }, []);
@@ -49,9 +49,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const res = await submit({ data: { email: email, password: password } });
       console.log("loginData", res);
 
-      const { token, user } = res?.data.data;
-
-      localStorage.setItem("token", token);
+      const { token, user } = res.data.data;
+      Cookies.set("token", token, { expires: 7, secure: true, sameSite: "Strict" });
       localStorage.setItem("user", JSON.stringify(user));
       setUser(user);
 
@@ -72,7 +71,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   } finally {
     setUser(null);
     localStorage.removeItem('user');
-    localStorage.removeItem('token');
+    Cookies.remove('token')
     navigate('/login')
   }
   };

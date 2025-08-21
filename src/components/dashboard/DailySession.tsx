@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader } from '../ui/Card';
 
-interface Order {
+interface DailySessionFrequency {
   id: string;
   date: string;
   amount: number;
@@ -13,12 +13,12 @@ interface Order {
   unique_users: number
 }
 
-interface OrdersTableProps {
-  orders: Order[];
+interface TableProps {
+  dailySessionFrequency: DailySessionFrequency[];
   isFiltered: boolean;
 }
 
-export const DailySession: React.FC<OrdersTableProps> = ({ orders, isFiltered }) => {
+export const DailySession: React.FC<TableProps> = ({ dailySessionFrequency, isFiltered }) => {
   return (
     <Card>
       <CardHeader>
@@ -28,13 +28,13 @@ export const DailySession: React.FC<OrdersTableProps> = ({ orders, isFiltered })
           </h3>
           {isFiltered && (
             <span className="bg-teal-100 text-teal-800 text-sm px-3 py-1 rounded-full">
-              Filtered Results ({orders.length})
+              Filtered Results ({dailySessionFrequency?.length})
             </span>
           )}
         </div>
       </CardHeader>
       <CardContent>
-        {orders?.length === 0 ? (
+        {dailySessionFrequency?.length === 0 ? (
           <div className="text-center py-8">
             <p className="text-slate-500">No Active found for the selected date range.</p>
           </div>
@@ -51,22 +51,22 @@ export const DailySession: React.FC<OrdersTableProps> = ({ orders, isFiltered })
                 </tr>
               </thead>
               <tbody>
-                {orders?.map((order,index) => (
+                {dailySessionFrequency?.map((dailySession,index) => (
                   <tr key={index} className="border-b border-slate-100 hover:bg-slate-50">
                     <td className="py-3 px-4 text-sm font-medium text-slate-900">
                       #{index + 1}
                     </td>
                     <td className="py-3 px-4 text-sm text-slate-600">
-                      {new Date(order.day).toLocaleDateString()}
+                      {new Date(dailySession.day).toLocaleDateString()}
                     </td>
                     <td className="py-3 px-4 text-sm text-slate-900">
-                      {order.total_sessions}
+                      {dailySession.total_sessions}
                     </td>
                     <td className="py-3 px-4 text-sm font-medium text-slate-900">
-                      ${order.unique_users}
+                      ${dailySession.unique_users}
                     </td>
                     <td className="py-3 px-4 text-sm font-medium text-slate-900">
-                      ${order.avg_frequency}
+                      ${dailySession.avg_frequency}
                     </td>
                   </tr>
                 ))}

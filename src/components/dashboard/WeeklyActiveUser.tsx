@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader } from '../ui/Card';
 
-interface Order {
+interface WeeklyActiveUser {
   id: string;
   date: string;
   amount: number;
@@ -11,12 +11,12 @@ interface Order {
   wau:number;
 }
 
-interface OrdersTableProps {
-  orders: Order[];
+interface TableProps {
+  weeklyActiveUsers: WeeklyActiveUser[];
   isFiltered: boolean;
 }
 
-export const WeeklyActiveUser: React.FC<OrdersTableProps> = ({ orders, isFiltered }) => {
+export const WeeklyActiveUser: React.FC<TableProps> = ({ weeklyActiveUsers, isFiltered }) => {
   return (
     <Card>
       <CardHeader>
@@ -26,13 +26,13 @@ export const WeeklyActiveUser: React.FC<OrdersTableProps> = ({ orders, isFiltere
           </h3>
           {isFiltered && (
             <span className="bg-teal-100 text-teal-800 text-sm px-3 py-1 rounded-full">
-              Filtered Results ({orders.length})
+              Filtered Results ({weeklyActiveUsers?.length})
             </span>
           )}
         </div>
       </CardHeader>
       <CardContent>
-        {orders?.length === 0 ? (
+        {weeklyActiveUsers?.length === 0 ? (
           <div className="text-center py-8">
             <p className="text-slate-500">No Active found for the selected date range.</p>
           </div>
@@ -48,17 +48,17 @@ export const WeeklyActiveUser: React.FC<OrdersTableProps> = ({ orders, isFiltere
                 </tr>
               </thead>
               <tbody>
-                {orders?.map((order,index) => (
+                {weeklyActiveUsers?.map((weeklyActiveUser,index) => (
                   <tr key={index} className="border-b border-slate-100 hover:bg-slate-50">
                     <td className="py-3 px-4 text-sm font-medium text-slate-900">
                       #{index + 1}
                     </td>
                     <td className="py-3 px-4 text-sm text-slate-600">
-                      {new Date(order.week_start
+                      {new Date(weeklyActiveUser.week_start
 ).toLocaleDateString()}
                     </td>
                     <td className="py-3 px-4 text-sm text-slate-900">
-                      {order.wau}
+                      {weeklyActiveUser.wau}
                     </td>
                   </tr>
                 ))}

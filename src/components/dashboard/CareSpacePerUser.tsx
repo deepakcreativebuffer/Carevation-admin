@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader } from '../ui/Card';
 import { Pagination } from '../ui/pagination/Pagination';
 
-interface Order {
+interface SpaceUser {
     user_id: number;
     user_name: string;
     careSpacesCreated: number;
 }
 
-interface OrdersTableProps {
-    orders: Order[];
+interface TableProps {
+    caregiverSpaceUsers: SpaceUser[];
     isFiltered: boolean;
 }
 
-export const CareSpacePerUser: React.FC<OrdersTableProps> = ({ orders, isFiltered }) => {
+export const CareSpacePerUser: React.FC<TableProps> = ({ caregiverSpaceUsers, isFiltered }) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
 
     const startIndex = (currentPage - 1) * pageSize;
-    const paginatedOrders = orders?.slice(startIndex, startIndex + pageSize);
+    const paginatedCaregiverSpaceUsers = caregiverSpaceUsers?.slice(startIndex, startIndex + pageSize);
     return (
         <Card>
             <CardHeader>
@@ -29,13 +29,13 @@ export const CareSpacePerUser: React.FC<OrdersTableProps> = ({ orders, isFiltere
                     </h3>
                     {isFiltered && (
                         <span className="bg-teal-100 text-teal-800 text-sm px-3 py-1 rounded-full">
-                            Filtered Results ({orders.length})
+                            Filtered Results ({caregiverSpaceUsers.length})
                         </span>
                     )}
                 </div>
             </CardHeader>
             <CardContent>
-                {orders?.length === 0 ? (
+                {caregiverSpaceUsers?.length === 0 ? (
                     <div className="text-center py-8">
                         <p className="text-slate-500">No Active found for the selected date range.</p>
                     </div>
@@ -51,19 +51,19 @@ export const CareSpacePerUser: React.FC<OrdersTableProps> = ({ orders, isFiltere
                                 </tr>
                             </thead>
                             <tbody>
-                                {paginatedOrders?.map((order, index) => (
+                                {paginatedCaregiverSpaceUsers?.map((spaceUser, index) => (
                                     <tr key={index} className="border-b border-slate-100 hover:bg-slate-50">
                                         <td className="py-3 px-4 text-sm font-medium text-slate-900">
                                             #{index + 1}
                                         </td>
                                         <td className="py-3 px-4 text-sm text-slate-600">
-                                            {order.user_id}
+                                            {spaceUser.user_id}
                                         </td>
                                         <td className="py-3 px-4 text-sm text-slate-900">
-                                            {order.user_name}
+                                            {spaceUser.user_name}
                                         </td>
                                         <td className="py-3 px-4 text-sm font-medium text-slate-900">
-                                            {order.careSpacesCreated}
+                                            {spaceUser.careSpacesCreated}
                                         </td>
 
                                     </tr>
@@ -72,7 +72,7 @@ export const CareSpacePerUser: React.FC<OrdersTableProps> = ({ orders, isFiltere
                         </table>
                         <Pagination
                             currentPage={currentPage}
-                            totalItems={orders?.length}
+                            totalItems={caregiverSpaceUsers?.length}
                             pageSize={pageSize}
                             onPageChange={setCurrentPage}
                             onPageSizeChange={(size) => {

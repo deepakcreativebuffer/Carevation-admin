@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff, Shield } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
-import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
-import { Card, CardContent, CardHeader } from '../ui/Card';
-
+import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/Input';
+import { Card, CardContent, CardHeader } from '../../components/ui/Card';
+import Cookies from "js-cookie";
 export const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,8 +14,7 @@ export const LoginPage: React.FC = () => {
   const { login, isLoading, user } = useAuth();
   const navigate = useNavigate();
 const userData = localStorage.getItem('user');
-const token = localStorage.getItem('token');
-  // Redirect if already logged in
+const token = Cookies.get("token");
   useEffect(() => {
     if (userData && token) {
       navigate('/dashboard');
